@@ -12,10 +12,8 @@ import { useAppStore } from '../store/useAppStore';
 
 export const AcademicTopicList: React.FC = () => {
   const topics = useLiveQuery(() => db.academicTopics.toArray(), []);
-  const { academicFilters, startReviewSession } = useAppStore((state) => ({
-    academicFilters: state.academicFilters,
-    startReviewSession: state.startReviewSession,
-  }));
+  const academicFilters = useAppStore((state) => state.academicFilters);
+  const startReviewSession = useAppStore((state) => state.startReviewSession);
 
   if (!topics) {
     return <div className="text-slate-400 text-sm py-8 text-center">Loading course topics...</div>;

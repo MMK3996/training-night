@@ -9,10 +9,8 @@ import { useAppStore } from '../store/useAppStore';
 import { addAcademicTopic } from '../lib/db';
 
 export const AddTopicModal: React.FC = () => {
-  const { activeModal, closeModal } = useAppStore((state) => ({
-    activeModal: state.activeModal,
-    closeModal: state.closeModal,
-  }));
+  const activeModal = useAppStore((state) => state.activeModal);
+  const closeModal = useAppStore((state) => state.closeModal);
 
   const [courseId, setCourseId] = useState('');
   const [courseName, setCourseName] = useState('');

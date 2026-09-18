@@ -15,11 +15,9 @@ export const DashboardView: React.FC = () => {
   const topics = useLiveQuery(() => db.academicTopics.toArray(), []);
   const reviewLogs = useLiveQuery(() => db.reviewLogs.toArray(), []);
 
-  const { startReviewSession, setActiveTab, openModal } = useAppStore((state) => ({
-    startReviewSession: state.startReviewSession,
-    setActiveTab: state.setActiveTab,
-    openModal: state.openModal,
-  }));
+  const startReviewSession = useAppStore((state) => state.startReviewSession);
+  const setActiveTab = useAppStore((state) => state.setActiveTab);
+  const openModal = useAppStore((state) => state.openModal);
 
   if (!problems || !topics || !reviewLogs) {
     return <div className="text-slate-400 text-sm py-12 text-center">Loading dashboard...</div>;

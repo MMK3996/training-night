@@ -11,10 +11,8 @@ import { addProblem } from '../lib/db';
 import type { CPPlatform } from '../types';
 
 export const AddProblemModal: React.FC = () => {
-  const { activeModal, closeModal } = useAppStore((state) => ({
-    activeModal: state.activeModal,
-    closeModal: state.closeModal,
-  }));
+  const activeModal = useAppStore((state) => state.activeModal);
+  const closeModal = useAppStore((state) => state.closeModal);
 
   const [url, setUrl] = useState('');
   const [platform, setPlatform] = useState<CPPlatform>('custom');

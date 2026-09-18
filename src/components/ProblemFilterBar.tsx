@@ -8,12 +8,10 @@ import { useAppStore } from '../store/useAppStore';
 import type { CPPlatform } from '../types';
 
 export const ProblemFilterBar: React.FC = () => {
-  const { problemFilters, setProblemFilters, resetProblemFilters, openModal } = useAppStore((state) => ({
-    problemFilters: state.problemFilters,
-    setProblemFilters: state.setProblemFilters,
-    resetProblemFilters: state.resetProblemFilters,
-    openModal: state.openModal,
-  }));
+  const problemFilters = useAppStore((state) => state.problemFilters);
+  const setProblemFilters = useAppStore((state) => state.setProblemFilters);
+  const resetProblemFilters = useAppStore((state) => state.resetProblemFilters);
+  const openModal = useAppStore((state) => state.openModal);
 
   const platforms: CPPlatform[] = ['codeforces', 'atcoder', 'cses', 'usaco', 'custom'];
 

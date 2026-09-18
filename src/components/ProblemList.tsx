@@ -12,10 +12,8 @@ import type { CPPlatform } from '../types';
 
 export const ProblemList: React.FC = () => {
   const problems = useLiveQuery(() => db.problems.toArray(), []);
-  const { problemFilters, startReviewSession } = useAppStore((state) => ({
-    problemFilters: state.problemFilters,
-    startReviewSession: state.startReviewSession,
-  }));
+  const problemFilters = useAppStore((state) => state.problemFilters);
+  const startReviewSession = useAppStore((state) => state.startReviewSession);
 
   if (!problems) {
     return <div className="text-slate-400 text-sm py-8 text-center">Loading problems...</div>;

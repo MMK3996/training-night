@@ -7,10 +7,8 @@ import { useAppStore } from '../store/useAppStore';
 import type { ActiveTab } from '../store/useAppStore';
 
 export const Navbar: React.FC = () => {
-  const { activeTab, setActiveTab } = useAppStore((state) => ({
-    activeTab: state.activeTab,
-    setActiveTab: state.setActiveTab,
-  }));
+  const activeTab = useAppStore((state) => state.activeTab);
+  const setActiveTab = useAppStore((state) => state.setActiveTab);
 
   const navItems: Array<{ id: ActiveTab; label: string; icon: string }> = [
     { id: 'dashboard', label: 'Dashboard', icon: '⚡' },

@@ -15,10 +15,8 @@ import { AddTopicModal } from './components/AddTopicModal';
 import { ReviewSession } from './components/ReviewSession';
 
 export function App() {
-  const { activeTab, resolvedTheme } = useAppStore((state) => ({
-    activeTab: state.activeTab,
-    resolvedTheme: state.resolvedTheme,
-  }));
+  const activeTab = useAppStore((state) => state.activeTab);
+  const resolvedTheme = useAppStore((state) => state.resolvedTheme);
 
   return (
     <div className={`min-h-screen ${resolvedTheme === 'dark' ? 'dark bg-slate-950 text-slate-100' : 'bg-slate-950 text-slate-100'}`}>

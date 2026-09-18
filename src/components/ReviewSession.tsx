@@ -19,19 +19,11 @@ import { calculateSM2Binary } from '../lib/sm2';
 import type { ProblemItem, CourseTopicItem } from '../types';
 
 export const ReviewSession: React.FC = () => {
-  const {
-    reviewSessionActive,
-    reviewItemIds,
-    currentReviewIndex,
-    advanceReview,
-    endReviewSession,
-  } = useAppStore((state) => ({
-    reviewSessionActive: state.reviewSessionActive,
-    reviewItemIds: state.reviewItemIds,
-    currentReviewIndex: state.currentReviewIndex,
-    advanceReview: state.advanceReview,
-    endReviewSession: state.endReviewSession,
-  }));
+  const reviewSessionActive = useAppStore((state) => state.reviewSessionActive);
+  const reviewItemIds = useAppStore((state) => state.reviewItemIds);
+  const currentReviewIndex = useAppStore((state) => state.currentReviewIndex);
+  const advanceReview = useAppStore((state) => state.advanceReview);
+  const endReviewSession = useAppStore((state) => state.endReviewSession);
 
   const [currentItem, setCurrentItem] = useState<{
     type: 'cp_problem' | 'academic_topic';
@@ -56,30 +48,30 @@ export const ReviewSession: React.FC = () => {
 
     (async () => {
       const problem = await getProblemById(currentId);
-      if (problem && isMounted) {
+      if (!isMounted) return;
+      if (problem) {
         setCurrentItem({ type: 'cp_problem', data: problem });
         setLoading(false);
         return;
       }
 
       const topic = await getAcademicTopicById(currentId);
-      if (topic && isMounted) {
+      if (!isMounted) return;
+      if (topic) {
         setCurrentItem({ type: 'academic_topic', data: topic });
         setLoading(false);
         return;
       }
 
       // If item not found, skip to next
-      if (isMounted) {
-        setLoading(false);
-        advanceReview();
-      }
+      setLoading(false);
+      advanceReview();
     })();
 
     return () => {
       isMounted = false;
     };
-  }, [reviewSessionActive, currentId, currentReviewIndex, advanceReview]);
+  }, [reviewSessionActive, currentId]);
 
   // Review answer handler
   const handleReview = useCallback(

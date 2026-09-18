@@ -7,14 +7,10 @@ import React from 'react';
 import { useAppStore } from '../store/useAppStore';
 
 export const AcademicFilterBar: React.FC = () => {
-  const { academicFilters, setAcademicFilters, resetAcademicFilters, openModal } = useAppStore(
-    (state) => ({
-      academicFilters: state.academicFilters,
-      setAcademicFilters: state.setAcademicFilters,
-      resetAcademicFilters: state.resetAcademicFilters,
-      openModal: state.openModal,
-    })
-  );
+  const academicFilters = useAppStore((state) => state.academicFilters);
+  const setAcademicFilters = useAppStore((state) => state.setAcademicFilters);
+  const resetAcademicFilters = useAppStore((state) => state.resetAcademicFilters);
+  const openModal = useAppStore((state) => state.openModal);
 
   return (
     <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 mb-6 text-slate-100 shadow-md space-y-3">

@@ -9,10 +9,8 @@ import { downloadBackup, importFromFile } from '../services/backupService';
 import type { UserSettings } from '../types';
 
 export const SettingsView: React.FC = () => {
-  const { theme, setTheme } = useAppStore((state) => ({
-    theme: state.theme,
-    setTheme: state.setTheme,
-  }));
+  const theme = useAppStore((state) => state.theme);
+  const setTheme = useAppStore((state) => state.setTheme);
 
   const [settings, setSettingsData] = useState<UserSettings | null>(null);
   const [importStatus, setImportStatus] = useState<string>('');
