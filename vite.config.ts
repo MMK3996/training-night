@@ -6,7 +6,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/training-night/', // Exact GitHub Pages subpath for https://mmk3996.github.io/training-night/
+  base: './', // Relative base path for universal GitHub Pages hosting
   plugins: [
     react(),
     tailwindcss(),
